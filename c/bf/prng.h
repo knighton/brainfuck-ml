@@ -13,7 +13,6 @@ void xorshift32_free(xorshift32_t* state);
 void xorshift32_set_seed(xorshift32_t* state, uint32_t seed);
 uint32_t xorshift32_get(xorshift32_t* state);
 
-void prng_free(void);
 void prng_set_seed(int seed);
 float prng_rand(float low, float high);
 int prng_randint(int low, int high);

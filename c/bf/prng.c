@@ -3,8 +3,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#include <stdio.h>
-
 #include "bf/lint.h"
 
 static xorshift32_t PRNG_STATE = {
@@ -26,10 +24,6 @@ uint32_t xorshift32_get(xorshift32_t* state) {
     x ^= x << 5;
     state->a = x;
     return x % BF_RAND_MAX;
-}
-
-void prng_free(void) {
-    xorshift32_free(&PRNG_STATE);
 }
 
 void prng_set_seed(int seed) {

@@ -45,7 +45,7 @@ def main():
             z = tf.equal(z, y_true)
             acc += int(tf.reduce_sum(tf.cast(z, tf.int32)))
         acc = 100.0 * acc / samples_per_epoch
-        print('%6d %6.2f' % (batch_id, acc))
+        print('%6d %6.2f' % (epoch_id, acc))
 
 
 if __name__ == '__main__':
