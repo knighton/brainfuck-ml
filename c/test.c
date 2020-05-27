@@ -5,23 +5,23 @@
 
 tensor_t* get_loss(tensor_t* y_pred, int* y_true) {
     int batch_size = y_pred->shape[0];
-    int num_classes = y_pred->shape[1];
+    int dim = y_pred->shape[1];
     tensor_t* dy = tensor_clone(y_pred);
-    for (int k = 0; k < batch_size; ++k) {
-        --dy->data[k * num_classes + y_true[k]];
+    for (int i = 0; i < batch_size; ++i) {
+        --dy->data[i * dim + y_true[i]];
     }
     return dy;
 }
 
 int get_acc(tensor_t* y_pred, int* y_true) {
     int batch_size = y_pred->shape[0];
-    int num_classes = y_pred->shape[1];
+    int dim = y_pred->shape[1];
     int acc = 0;
     for (int i = 0; i < batch_size; ++i) {
         int max_cls = 0;
-        float max_val = y_pred->data[i * num_classes];
-        for (int j = 1; j < num_classes; ++j) {
-            float val = y_pred->data[i * num_classes + j];
+        float max_val = y_pred->data[i * dim];
+        for (int j = 1; j < dim; ++j) {
+            float val = y_pred->data[i * dim + j];
             if (max_val < val) {
                 max_cls = j;
                 max_val = val;
@@ -35,9 +35,9 @@ int get_acc(tensor_t* y_pred, int* y_true) {
 }
 
 int main() {
-    int num_epochs = 10;
-    int batches_per_epoch = 10;
-    int batch_size = 10;
+    int num_epochs = 20;
+    int batches_per_epoch = 20;
+    int batch_size = 20;
     int in_dim = 100;
     int mid_dim = 50;
     int out_dim = 10;
@@ -52,6 +52,7 @@ int main() {
     module_t* model = sequence(
         dense(in_dim, mid_dim),
         relu(),
+        dropout(0.5),
         dense(mid_dim, out_dim),
         softmax()
     );

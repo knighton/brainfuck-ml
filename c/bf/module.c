@@ -3,6 +3,7 @@
 #include <stddef.h>
 
 #include "bf/dense.h"
+#include "bf/dropout.h"
 #include "bf/relu.h"
 #include "bf/sequence.h"
 #include "bf/softmax.h"
@@ -34,6 +35,7 @@ typedef struct module_api_t {
 
 static module_api_t APIS[] = {
     API(dense),
+    API(dropout),
     API(relu),
     API(sequence),
     API(softmax),

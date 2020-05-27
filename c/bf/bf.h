@@ -2,6 +2,7 @@
 #define BF_BF_H_
 
 #include "bf/dense.h"
+#include "bf/dropout.h"
 #include "bf/lint.h"
 #include "bf/module.h"
 #include "bf/pp_narg.h"

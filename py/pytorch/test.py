@@ -4,9 +4,9 @@ from .bf import *
 
 
 def main():
-    num_epochs = 10
-    batches_per_epoch = 10
-    batch_size = 10
+    num_epochs = 20
+    batches_per_epoch = 20
+    batch_size = 20
     in_dim = 100
     mid_dim = 50
     out_dim = 10
@@ -18,6 +18,7 @@ def main():
     model = Sequence(
         Dense(in_dim, mid_dim),
         ReLU(),
+        Dropout(0.5),
         Dense(mid_dim, out_dim),
         Softmax(),
     )
