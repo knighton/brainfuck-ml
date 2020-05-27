@@ -6,6 +6,7 @@
 #include "bf/tensor.h"
 
 typedef enum module_type_id_t {
+    DEBUG,
     DENSE,
     DROPOUT,
     RELU,

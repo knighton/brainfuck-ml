@@ -1,3 +1,4 @@
+from .debug import Debug
 from .dense import Dense
 from .dropout import Dropout
 from .prng import set_seed, rand, randint

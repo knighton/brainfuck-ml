@@ -50,11 +50,13 @@ int main() {
     }
 
     module_t* model = sequence(
+        debug("begin"),
         dense(in_dim, mid_dim),
         relu(),
         dropout(0.5),
         dense(mid_dim, out_dim),
-        softmax()
+        softmax(),
+        debug("end")
     );
 
     float acc_to_pct = 100.0 / (batches_per_epoch * batch_size);

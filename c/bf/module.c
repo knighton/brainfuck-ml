@@ -2,6 +2,7 @@
 
 #include <stddef.h>
 
+#include "bf/debug.h"
 #include "bf/dense.h"
 #include "bf/dropout.h"
 #include "bf/relu.h"
@@ -34,6 +35,7 @@ typedef struct module_api_t {
 }
 
 static module_api_t APIS[] = {
+    API(debug),
     API(dense),
     API(dropout),
     API(relu),

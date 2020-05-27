@@ -13,8 +13,8 @@ class Dropout(Module):
         if is_t:
             noise = rand(0, 1, x.shape)
             self.mask = (self.rate <= noise).astype(np.float32)
-            x = self.mask * x / self.rate
+            x = x * self.mask / self.rate
         return x
 
     def backward(self, dy):
-        return dy * self.mask
+        return dy * self.mask / self.rate

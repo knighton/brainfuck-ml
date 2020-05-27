@@ -3,8 +3,6 @@
 #include <assert.h>
 #include <stdlib.h>
 
-#include <stdio.h>
-
 #include "bf/lint.h"
 #include "bf/prng.h"
 
@@ -55,7 +53,7 @@ tensor_t* dropout_backward(module_t* module, tensor_t* dy) {
     dropout_t* f = (dropout_t*)module;
     tensor_t* dx = tensor_clone(dy);
     for (int i = 0; i < dx->size; ++i) {
-        dx->data[i] *= f->mask->data[i];
+        dx->data[i] *= f->mask->data[i] / f->rate;
     }
     return dx;
 }

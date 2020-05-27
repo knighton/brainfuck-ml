@@ -14,5 +14,5 @@ class Dropout(Module):
         if is_t:
             noise = rand(0, 1, x.shape)
             mask = (self.rate <= noise).type(torch.float32)
-            x = mask * x / self.rate
+            x = x * mask / self.rate
         return x
