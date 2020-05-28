@@ -10,6 +10,7 @@ typedef enum module_type_id_t {
     DENSE,
     DROPOUT,
     RELU,
+    RESHAPE,
     SEQUENCE,
     SOFTMAX,
 } module_type_id_t;

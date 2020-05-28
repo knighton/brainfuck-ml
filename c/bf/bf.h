@@ -9,6 +9,7 @@
 #include "bf/pp_narg.h"
 #include "bf/prng.h"
 #include "bf/relu.h"
+#include "bf/reshape.h"
 #include "bf/sequence.h"
 #include "bf/softmax.h"
 #include "bf/tensor.h"

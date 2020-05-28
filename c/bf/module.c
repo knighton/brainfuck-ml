@@ -6,6 +6,7 @@
 #include "bf/dense.h"
 #include "bf/dropout.h"
 #include "bf/relu.h"
+#include "bf/reshape.h"
 #include "bf/sequence.h"
 #include "bf/softmax.h"
 
@@ -39,6 +40,7 @@ static module_api_t APIS[] = {
     API(dense),
     API(dropout),
     API(relu),
+    API(reshape),
     API(sequence),
     API(softmax),
 };

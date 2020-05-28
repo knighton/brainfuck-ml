@@ -16,13 +16,13 @@ def main():
     y_true = randint(0, out_dim, (batch_size,))
 
     model = Sequence(
-        Debug('begin'),
+        Reshape(-1, 1, 2, 2),
+        Flatten(),
         Dense(in_dim, mid_dim),
         ReLU(),
         Dropout(0.5),
         Dense(mid_dim, out_dim),
         Softmax(),
-        Debug('end'),
     )
 
     indices = torch.arange(batch_size)

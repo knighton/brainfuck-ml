@@ -3,6 +3,8 @@
 #include <assert.h>
 #include <stdlib.h>
 
+#include <stdio.h>
+
 #include "bf/prng.h"
 
 void tensor_init_common(tensor_t* x, int num_args, va_list* args) {
@@ -123,4 +125,41 @@ void tensor_update_step(tensor_t* x, tensor_t* dx, float lr) {
     for (int i = 0; i < x->size; ++i) {
         x->data[i] -= lr * dx->data[i];
     }
+}
+
+void tensor_shape(tensor_t* t, shape_t* s) {
+    s->size = t->size;
+    s->ndim = t->ndim;
+    for (int i = 0; i < t->ndim; ++i) {
+        s->shape[i] = t->shape[i];
+    }
+}
+
+tensor_t* tensor_reshape(tensor_t* x, shape_t* s) {
+    tensor_t* y = tensor_clone(x);
+    if (0 < s->size) {
+        assert(y->size == s->size);
+        y->ndim = s->ndim;
+        for (int i = 0; i < s->ndim; ++i) {
+            int dim = s->shape[i];
+            assert(1 <= dim);
+            y->shape[i] = dim;
+        }
+    } else {
+        assert(s->size < 0);
+        int wildcard_size = -s->size;
+        assert(y->size % wildcard_size == 0);
+        int wildcard_dim = y->size / wildcard_size;
+        y->ndim = s->ndim;
+        for (int i = 0; i < s->ndim; ++i) {
+            int dim = s->shape[i];
+            if (dim == -1) {
+                dim = wildcard_dim;
+            } else {
+                assert(1 <= dim);
+            }
+            y->shape[i] = dim;
+        }
+    }
+    return y;
 }

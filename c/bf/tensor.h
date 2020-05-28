@@ -15,6 +15,12 @@ typedef struct tensor_t {
     float* data;
 } tensor_t;
 
+typedef struct shape_t {
+    int size;
+    int ndim;
+    int shape[NDIM_MAX];
+} shape_t;
+
 void pp_tensor_init(tensor_t* x, int num_args, ...);
 #define tensor_init(x, ...) \
     pp_tensor_init(x, PP_NARG(__VA_ARGS__), __VA_ARGS__)
@@ -44,5 +50,8 @@ void tensor_set(tensor_t* x, tensor_t* a);
 tensor_t* tensor_clone(tensor_t* a);
 
 void tensor_update_step(tensor_t* x, tensor_t* dx, float lr);
+
+void tensor_shape(tensor_t* t, shape_t* s);
+tensor_t* tensor_reshape(tensor_t* t, shape_t* s);
 
 #endif  /* BF_TENSOR_H_ */
