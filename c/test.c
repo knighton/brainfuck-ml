@@ -53,6 +53,7 @@ int main() {
         reshape(-1, 1, 2, 2),
         flatten(),
         dense(in_dim, mid_dim),
+        batchnorm0d(mid_dim, 0.9, 1e-5),
         relu(),
         dropout(0.5),
         dense(mid_dim, out_dim),

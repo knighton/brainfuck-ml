@@ -19,6 +19,7 @@ def main():
         Reshape(-1, 1, 2, 2),
         Flatten(),
         Dense(in_dim, mid_dim),
+        BatchNorm0d(mid_dim),
         ReLU(),
         Dropout(0.5),
         Dense(mid_dim, out_dim),

@@ -1,6 +1,7 @@
 #ifndef BF_BF_H_
 #define BF_BF_H_
 
+#include "bf/batchnorm.h"
 #include "bf/debug.h"
 #include "bf/dense.h"
 #include "bf/dropout.h"

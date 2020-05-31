@@ -2,6 +2,7 @@
 
 #include <stddef.h>
 
+#include "bf/batchnorm.h"
 #include "bf/debug.h"
 #include "bf/dense.h"
 #include "bf/dropout.h"
@@ -36,6 +37,7 @@ typedef struct module_api_t {
 }
 
 static module_api_t APIS[] = {
+    API(batchnorm),
     API(debug),
     API(dense),
     API(dropout),
