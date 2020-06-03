@@ -9,7 +9,7 @@ def set_seed(seed):
 
 def rand(low, high, shape):
     x = lib.rand(low, high, shape)
-    return tf.convert_to_tensor(x, tf.float32)
+    return tf.convert_to_tensor(x)
 
 
 def randint(low, high, shape):

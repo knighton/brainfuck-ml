@@ -1,4 +1,5 @@
 from .batchnorm import BatchNorm0d, BatchNorm1d, BatchNorm2d, BatchNorm3d
+from .conv import Conv1d, Conv2d, Conv3d
 from .debug import Debug
 from .dense import Dense
 from .dropout import Dropout

@@ -10,10 +10,10 @@ class BatchNormNd(Module):
         self.momentum = momentum
         self.eps = eps
         self.ndim = ndim
-        self.gamma = self.parameter(tf.ones((dim, 1)))
-        self.beta = self.parameter(tf.zeros((dim, 1)))
-        self.mov_mean = tf.zeros((dim, 1))
-        self.mov_std = tf.ones((dim, 1))
+        self.gamma = self.parameter(tf.ones((dim, 1), tf.float32))
+        self.beta = self.parameter(tf.zeros((dim, 1), tf.float32))
+        self.mov_mean = tf.zeros((dim, 1), tf.float32)
+        self.mov_std = tf.ones((dim, 1), tf.float32)
 
     def forward(self, x, is_t):
         if self.ndim is not None:

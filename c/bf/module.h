@@ -7,6 +7,10 @@
 
 typedef enum module_type_id_t {
     BATCHNORM,
+    CONV1D,
+    CONV2D,
+    CONV3D,
+    CONV4D,
     DEBUG,
     DENSE,
     DROPOUT,

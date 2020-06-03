@@ -35,28 +35,43 @@ int get_acc(tensor_t* y_pred, int* y_true) {
 }
 
 int main() {
-    int num_epochs = 20;
-    int batches_per_epoch = 20;
-    int batch_size = 20;
-    int in_dim = 100;
-    int mid_dim = 50;
-    int out_dim = 10;
+    int num_epochs = 50;
+    int batches_per_epoch = 50;
+    int batch_size = 32;
     float lr = 0.007;
 
-    tensor_t* x = uniform(0, 1, batch_size, in_dim);
+    tensor_t* x = uniform(0, 1, batch_size, 8, 2, 2, 2);
     int* y_true = (int*)malloc(batch_size * sizeof(int));
     for (int i = 0; i < batch_size; ++i) {
-        y_true[i] = prng_randint(0, out_dim);
+        y_true[i] = prng_randint(0, 16);
     }
 
     module_t* model = sequence(
-        reshape(-1, 1, 2, 2),
+        conv3d(8, 8, 3, 1, 1),
+        batchnorm3d(8, 0.9, 1e-5),
+
+        reshape(16, 2, 2),
+
+        relu(),
+        conv2d(16, 16, 3, 1, 1),
+        batchnorm2d(16, 0.9, 1e-5),
+
+        reshape(32, 2),
+
+        relu(),
+        conv1d(32, 32, 3, 1, 1),
+        batchnorm1d(32, 0.9, 1e-5),
+
         flatten(),
-        dense(in_dim, mid_dim),
-        batchnorm0d(mid_dim, 0.9, 1e-5),
+
         relu(),
         dropout(0.5),
-        dense(mid_dim, out_dim),
+        dense(64, 32),
+        batchnorm0d(32, 0.9, 1e-5),
+
+        relu(),
+        dropout(0.5),
+        dense(32, 16),
         softmax()
     );
 

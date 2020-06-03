@@ -30,4 +30,6 @@ class Module(object):
 
     def update_step(self, lr):
         for param in self.each_parameter():
+            if param.grad is None:
+                continue
             param.data -= lr * param.grad

@@ -34,22 +34,22 @@ tensor_t* softmax_forward(module_t* module, tensor_t* x, bool is_t) {
     for (int n = 0; n < batch_size; ++n) {
         float max = x->data[n * dim];
         for (int d = 1; d < dim; ++d) {
-            int key = n * dim + d;
-            float val = x->data[key];
+            int idx = n * dim + d;
+            float val = x->data[idx];
             if (max < val) {
                 max = val;
             }
         }
         float sum = 0;
         for (int d = 0; d < dim; ++d) {
-            int key = n * dim + d;
-            float val = exp(x->data[key] - max);
-            y->data[key] = val;
+            int idx = n * dim + d;
+            float val = exp(x->data[idx] - max);
+            y->data[idx] = val;
             sum += val;
         }
         for (int d = 0; d < dim; ++d) {
-            int key = n * dim + d;
-            y->data[key] /= sum;
+            int idx = n * dim + d;
+            y->data[idx] /= sum;
         }
     }
     return y;

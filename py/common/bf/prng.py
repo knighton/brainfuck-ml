@@ -44,8 +44,9 @@ class Distributions(object):
     def rand(self, low, high, shape):
         assert low < high
         x = self.gen.get_tensor(*shape)
-        x = x.astype(np.float32) / rand_max
-        return x * (high - low) + low
+        x = x / rand_max
+        x = x * (high - low) + low
+        return x.astype(np.float32)
 
     def randint(self, low, high, shape):
         assert low < high
